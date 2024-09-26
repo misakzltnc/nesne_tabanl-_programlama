@@ -62,35 +62,35 @@ namespace RK2_2
 		}
 
 
-		public class Die
+		public class Die  //Zarı temsil eden bir sınıf tanımlanıyor
 		{
-			private int numberOfEyes;
-			private Random randomNumberSupplier;
-			private const int maxNumberOfEyes = 6;
+			private int numberOfEyes;  //zarın göz sayısını tutan özel bir değişken
+			private Random randomNumberSupplier; // Rastgele sayı üreticisi
+			private const int maxNumberOfEyes = 6; // Zarın maksimum göz sayısını tanımlayan sabit
 
-			public Die ()
+			public Die ()  // Yapıcı metod; zar nesnesi oluşturulduğunda çalışır
 			{
-				randomNumberSupplier = new Random(unchecked((int)DateTime.Now.Ticks));
-				numberOfEyes = NewTossHowManyEyes();
+				randomNumberSupplier = new Random(unchecked((int)DateTime.Now.Ticks));  // Rastgele sayı üreticisi oluşturuluyor
+				numberOfEyes = NewTossHowManyEyes(); // İlk zar atışı yapılıyor ve sonuç atanıyor
 			}
 
-			public void Toss()
+			public void Toss() // Zar atışını simüle eden bir metod
 			{
-				numberOfEyes = NewTossHowManyEyes();
+				numberOfEyes = NewTossHowManyEyes(); // Yeni zar atışı yapılıyor ve sonuc güncelleniyor
 			}
 
-			private int NewTossHowManyEyes ()
+			private int NewTossHowManyEyes ()  // Yeni göz sayısını belirleyen özel bir metod
 			{
-				return randomNumberSupplier.Next(1, maxNumberOfEyes + 1);
+				return randomNumberSupplier.Next(1, maxNumberOfEyes + 1);  // 1 ile 6 arasında rastgele bir sayı döndürüyor
 			}
 
-			private int NumberOfEyes()
+			private int NumberOfEyes() // Zarın göz sayısını döndüren metod
 			{
-				return numberOfEyes;
+				return numberOfEyes; // Mevcut göz sayısını geri döndürüyor
 			}
-			public override string ToString()
+			public override string ToString() // Sınıfın dize temsili için metod
 			{
-				return String.Format("{0}", numberOfEyes);
+				return String.Format("{0}", numberOfEyes); // Göz sayısını köşeli parantez içinde döndürüyor
 			}
 		}
 
@@ -121,19 +121,20 @@ namespace RK2_2
 
 
 			//Zar oyunu uygulaması
+			//Zar nesnesini oluştur
 			Die d1 = new Die();
 			Die d2 = new Die();
 			Die d3 = new Die();
 
-			for (int i = 1; i<10; i++)
+			for (int i = 1; i<10; i++) // 1 den 9 a kadar döngü; toplam 9 iterasyon yapacak
 			{
-				Console.WriteLine("Die 1: {0} ", d1);
+				Console.WriteLine("Die 1: {0} ", d1);  //d1 zarının mevcut değerini ekrana yazdırır
 				Console.WriteLine("Die 2: {0} ", d2);
 				Console.WriteLine("Die 3: {0} ", d3);
 
-				d1.Toss();
-				d2.Toss();
-				d3.Toss();
+				d1.Toss(); // d1 zarını atar ve yeni değeri günceller
+				d2.Toss(); // d2 zarını atar ve yeni değeri günceller
+				d3.Toss(); // d3 zarını atar ve yeni değeri günceller
 			}
 
 		}
