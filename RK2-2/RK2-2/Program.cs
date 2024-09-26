@@ -5,6 +5,11 @@ namespace RK2_2
 {
 	internal class Program
 	{
+		// Sınıfları öğrenmek ve uygulamak için kullanılabilir.
+		// Burada 3 ayrı uygulama yapılmıştır. Animal, Car, Die
+		// Animal uygulamasında hayvan sınıfı tanımlanmış, isim ve ses olmak üzere 2 özellik kullanılmıştır.
+		// Car uygulamasında, araba sınıfı tanımlanmış ve araba nesnesi oluşturulmuştur. Marka, model, hız özellikleri vardır. Hızı arttırıp azaltma işlevlerine sahiptir.
+		// Die uygulamasında, 6 yüzlü 3 zarın simülasyonu yapılmıştır. 3 zar rastgele atılır ve sonuçları ekrana yazdırılır. Her atışta zarların yeni değerleri belirlenir ve bu işlem 9 kez tekrarlanır.
 
 		public class Animal  //hayvan sınıfını tanımla
 		{
