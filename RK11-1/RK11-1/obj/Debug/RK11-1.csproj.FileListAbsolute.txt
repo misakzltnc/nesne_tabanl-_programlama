@@ -1,0 +1,7 @@
+C:\Users\HBV\source\repos\RK11-1\RK11-1\bin\Debug\RK11-1.exe.config
+C:\Users\HBV\source\repos\RK11-1\RK11-1\bin\Debug\RK11-1.exe
+C:\Users\HBV\source\repos\RK11-1\RK11-1\bin\Debug\RK11-1.pdb
+C:\Users\HBV\source\repos\RK11-1\RK11-1\obj\Debug\RK11-1.csproj.AssemblyReference.cache
+C:\Users\HBV\source\repos\RK11-1\RK11-1\obj\Debug\RK11-1.csproj.CoreCompileInputs.cache
+C:\Users\HBV\source\repos\RK11-1\RK11-1\obj\Debug\RK11-1.exe
+C:\Users\HBV\source\repos\RK11-1\RK11-1\obj\Debug\RK11-1.pdb
