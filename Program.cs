@@ -1,104 +1,197 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
-using System.Diagnostics;
 
-namespace RK13_2
+
+namespace RK14_11
 {
-	internal class Program
-	{
-		static void Main(string[] args)
-		{
-			Thread gorev1 = new Thread(Fonk1);
-			Thread gorev2 = new Thread(Fonk2);
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Thread gorev1 = new Thread(fonk1);
+            //Console.WriteLine("yazdırma işlemi başlatılıyor");
+            //gorev1.Start();
 
-			//gorev1.Start();
-			//gorev2.Start();
 
-			//gorev1.Join();
-			//gorev2.Join();
-
-			//Console.WriteLine("İşlem tamamlandı");
-
-			Thread gorev3 = new Thread(CpuKullanimiKontrol);
-			gorev3.Name = "CPU Kullanımı Kontrolü";
-
-			Thread gorev4 = new Thread(RamKontrol);
-			gorev4.Name = "Ram Kullanımı Kontrolü";
-
-            Console.WriteLine("İşlem başlatılıyor.");
-
-			gorev3.Start();
-			gorev4.Start();
-
-			gorev3.Join();
-			gorev4.Join();
-
-            Console.WriteLine("Tüm işlemler tamamlandı.");
+            while (4<3)
+            {
+                try
+                {
+                    int yas = 5; // negatif
+                    if (yas < 0)
+                    {
+                        throw new CustomException("Yaş negatif olamaz");
+                    }
+                }
+                catch (CustomException ex)
+                {
+                    Console.WriteLine("Özel Hata: " + ex.Message);
+                }
+            }
+            
 
 
 
+            while (4 < 3)
+            {
+                try
+                {
+                    Console.Write("Yaşınızı giriniz: ");
+                    int age = int.Parse(Console.ReadLine());
+
+                    CheckAge(age);
+                }
+                catch (CustomException ex)
+                {
+                    Console.WriteLine("Özel hata: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Genel Hata: " + ex.Message);
+                }
+
+            }
+
+            while (4<3)
+            {
+                try
+                {
+                    Console.WriteLine("yaşınızı giriniz");
+                    int yas = int.Parse(Console.ReadLine());
+                    if (yas < 0)
+                    {
+                        throw new CustomException("Yaş negatif olamaz!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Genel Hata: " + ex.Message);
+                }
+            }
+
+            while (4<3)
+            {
+                try
+                {
+                    Console.WriteLine("birinci sayıyı giriniz");
+                    int sayi1 = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("ikinci sayıyı giriniz");
+                    int sayi2 = int.Parse(Console.ReadLine());
+
+                    double result = Divide(sayi1, sayi2);
+                    Console.WriteLine("Sonuç: " + result);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Hata: " + ex.Message);
+                }
+            }
+
+            while (4 < 3)
+            {
+                try
+                {
+                    Console.WriteLine("yaşınızı giriniz");
+                    int yas = int.Parse(Console.ReadLine());
+
+                    YasKontrol(yas);
+                    break;
+                }
+                catch (FormatException) 
+                {
+                    Console.WriteLine("Hata: lütfen geçerli bir sayı giriniz.");
+                }
+                catch ( ArgumentException ex)
+                {
+                    Console.WriteLine("hata: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("hata: " + ex.Message);
+                }
+                
+            }
+
+
+            double bakiye = 1000;
+            bool islemTamamlandi = false;
+            while (!islemTamamlandi)
+            {
+                Console.WriteLine($"Mevcut bakiyeniz: {bakiye} TL");
+                Console.Write("Çekmek istediğiniz tutarı giriniz: ");
+                double tutar = double.Parse(Console.ReadLine());
+
+                if (tutar <0)
+                {
+                    throw new ArgumentException("Çekilecek tutar negatif olamaz.");
+                }
+                if (tutar > bakiye)
+                {
+                    throw new InsufficientBalanceException("Bakiyeniz yetersiz.");
+                }
+            }
+            
 
             Console.ReadLine();
         }
 
-		static void Fonk1()
-		{
-			for (int i = 0; i <=5; i++) 
-			{
-                Console.WriteLine($"Veri işlemenin {i}. adımı" );
-				Thread.Sleep(1000);
+
+        public class InsufficientBalanceException: Exception
+        {
+            public InsufficientBalanceException(string message) : base(message) { }
+        }
+        static double Divide(double numerator,  double denominator)
+        {
+            if ( denominator == 0)
+            {
+                throw new DivideByZeroException("Payda sıfır olamaz");
             }
-		}
+            return numerator / denominator;
+        }
+        static void CheckAge(int age)
+        {
+            if (age < 0)
+            {
+                throw new CustomException("Yaş negatif olamaz");
+            }
+            else if (age < 18)
+            {
+                throw new CustomException("Yaş 18 den küçük olamaz");
+            }
+            else { Console.WriteLine("Yaş geçerli: " + age); }
+        }
 
-		static void Fonk2()
-		{
-			for (int i = 0;i <=3; i++) 
-			{
-				Console.WriteLine($"E-posta gönderiminin {i}. adımı");
-				Thread.Sleep(1500);
-			}
-		}
+        static void YasKontrol(int yas)
+        {
+            if (yas < 0)
+            {
+                throw new ArgumentException("Yaş sıfırdan küçük olamaz, tekrar deneyiniz.");
+            }
+            else if (yas > 120)
+            {
+                throw new ArgumentException("Geçersiz bir yaş değeri girdiniz, tekrar deneyiniz.");
+            }
+            else
+            {
+                Console.WriteLine("Geçerli bir yaş değeri girdiniz: " + yas);
+            }
+        }
+        public class CustomException : Exception 
+        {
+            public CustomException(string message) : base(message) { }
+        }
 
-		static void CpuKullanimiKontrol()
-		{
-			Console.WriteLine($"{Thread.CurrentThread.Name} başlatıldı.");
 
-			var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-
-			cpuCounter.NextValue();
-			for (int i = 0; i < 3; i++)
-			{
-				float cpuUsage = cpuCounter.NextValue();
-				Console.WriteLine($"{Thread.CurrentThread.Name} CPU Kullanımı: {cpuUsage}%");
-
-				Thread.Sleep(2000);
-			}
-
-			Console.WriteLine($"{Thread.CurrentThread.Name} tamamlandı.");
-		}
-
-		static void RamKontrol()
-		{
-			Console.WriteLine($"{Thread.CurrentThread.Name} başlatıldı.");
-
-			var ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-
-			// First read to initialize the counter properly
-			ramCounter.NextValue();
-			for (int i = 0; i < 3; i++)
-			{
-				float ramUsage = ramCounter.NextValue();
-				Console.WriteLine($"{Thread.CurrentThread.Name} RAM Kullanımı: {ramUsage} MB");
-
-				Thread.Sleep(3000);
-			}
-
-			Console.WriteLine($"{Thread.CurrentThread.Name} tamamlandı.");
-		}
-	}
+        static void fonk1()
+        {
+            for (int i = 0; i <= 3; i++)
+            {
+                Console.WriteLine($"yazma işleminin {i}. adımı");
+                Thread.Sleep(1000);
+            }
+            Console.WriteLine("Yazdırma işlemi tamamlandı.");
+        }
+    }
 }
